@@ -51,13 +51,12 @@ var _ = require('./');
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function compose(fn, L1, E1) {
-  var _ref = arguments.length <= 3 || arguments[3] === undefined ? {} : arguments[3];
-
-  var contextTypes = _ref.contextTypes;
-  var _ref$pure = _ref.pure;
-  var pure = _ref$pure === undefined ? true : _ref$pure;
-  var _ref$withRef = _ref.withRef;
-  var withRef = _ref$withRef === undefined ? false : _ref$withRef;
+  var _ref = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {},
+      contextTypes = _ref.contextTypes,
+      _ref$pure = _ref.pure,
+      pure = _ref$pure === undefined ? true : _ref$pure,
+      _ref$withRef = _ref.withRef,
+      withRef = _ref$withRef === undefined ? false : _ref$withRef;
 
   return function (ChildComponent, L2, E2) {
     (0, _invariant2.default)(Boolean(ChildComponent), 'Should provide a child component to build the higher order container.');
@@ -82,7 +81,7 @@ function compose(fn, L1, E1) {
       function Container(props, context) {
         (0, _classCallCheck3.default)(this, Container);
 
-        var _this = (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(Container).call(this, props, context));
+        var _this = (0, _possibleConstructorReturn3.default)(this, (Container.__proto__ || (0, _getPrototypeOf2.default)(Container)).call(this, props, context));
 
         _this.getWrappedInstance = _this.getWrappedInstance.bind(_this);
 
@@ -101,8 +100,8 @@ function compose(fn, L1, E1) {
           this._mounted = true;
         }
       }, {
-        key: 'componentWillReceiveProps',
-        value: function componentWillReceiveProps(props, context) {
+        key: 'UNSAFE_componentWillReceiveProps',
+        value: function UNSAFE_componentWillReceiveProps(props, context) {
           this._subscribe(props, context);
         }
       }, {
@@ -175,8 +174,8 @@ function compose(fn, L1, E1) {
       }, {
         key: '_getProps',
         value: function _getProps() {
-          var _state$payload = this.state.payload;
-          var payload = _state$payload === undefined ? {} : _state$payload;
+          var _state$payload = this.state.payload,
+              payload = _state$payload === undefined ? {} : _state$payload;
 
 
           var props = (0, _extends3.default)({}, this.props, payload);
