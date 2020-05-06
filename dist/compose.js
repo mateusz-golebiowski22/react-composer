@@ -90,7 +90,7 @@ function compose(fn, L1, E1) {
         // XXX: In the server side environment, we need to
         // stop the subscription right away. Otherwise, it's a starting
         // point to huge subscription leak.
-        _this._subscribe(props, context);
+        _this._subscribe();
         return _this;
       }
 
@@ -100,9 +100,11 @@ function compose(fn, L1, E1) {
           this._mounted = true;
         }
       }, {
-        key: 'UNSAFE_componentWillReceiveProps',
-        value: function UNSAFE_componentWillReceiveProps(props, context) {
-          this._subscribe(props, context);
+        key: 'componentDidUpdate',
+        value: function componentDidUpdate(prevProps) {
+          if (prevProps !== this.props) {
+            this._subscribe();
+          }
         }
       }, {
         key: 'componentWillUnmount',
@@ -143,7 +145,7 @@ function compose(fn, L1, E1) {
         }
       }, {
         key: '_subscribe',
-        value: function _subscribe(props, context) {
+        value: function _subscribe() {
           var _this2 = this;
 
           this._unsubscribe();
@@ -162,7 +164,7 @@ function compose(fn, L1, E1) {
             }
           };
 
-          this._stop = fn(props, onData, context);
+          this._stop = fn(this.props, onData, this.context);
         }
       }, {
         key: '_unsubscribe',
