@@ -1,5 +1,9 @@
 # ChangeLog
+## v1.13.2
 
+* Clear componentWillReceiveProps warning
+
+# Original changelog
 ## v1.13.0
 
 * Add support for MobX. See: [PR101](https://github.com/kadirahq/react-komposer/pull/101)
