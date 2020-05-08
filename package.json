@@ -31,7 +31,7 @@
     "browserify": "12.x.x",
     "chai": "3.x.x",
     "enzyme": "^2.2.0",
-    "eslint": "1.7.x",
+    "eslint": "6.8.x",
     "eslint-plugin-babel": "2.x.x",
     "eslint-plugin-react": "3.x.x",
     "exposify": "0.5.x",
